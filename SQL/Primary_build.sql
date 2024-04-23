@@ -75,9 +75,21 @@ SELECT  name,
         min(round(value)) AS price_min,
         max(year(date_from)) AS year_max,
         max(round(value)) AS price_max,
-        round(((max(round(value)) - min(round(value))) / min(round(value))) * 100,1) AS yr_perc_dif
+        round(((max(round(value)) - min(round(value))) / min(round(value))) * 100,1) AS yr_food_perc_dif
 FROM czechia_price_category AS category
 JOIN czechia_price AS cp ON category.code = cp.category_code
 GROUP BY name
-ORDER BY yr_perc_dif;
+ORDER BY yr_food_perc_dif;
+-- ---------------------------------------------------------------------------------
+-- Q4
 
+SELECT
+    name,
+    round(avg(value)) AS price,
+    year(date_from) AS year,
+    round((round(avg(value)) - lag(round(avg(value)),1) OVER (PARTITION BY name ORDER BY year(date_from))) /
+    lag(round(avg(value))) OVER (PARTITION BY name ORDER BY year(date_from)) * 100, 1) AS per_food_grow
+FROM czechia_price_category AS category
+JOIN czechia_price AS cp ON category.code = cp.category_code
+GROUP BY name, year
+ORDER BY name, year;
