@@ -43,7 +43,7 @@ SELECT
 -- --------------------------------------------------------------------------------------------------------------
 -- ceny chleba a mléka během r. 2006, 2018 za jednotku
 SELECT
-    category.name,
+    category.name AS item,
     round(value, 1) AS unit_price,
     year(date_from) AS year,
     concat(price_value,' ', price_unit) AS "measure unit"
@@ -54,5 +54,7 @@ SELECT
     AND (year(date_from)) IN (2006, 2018)
     GROUP BY year, name
     ORDER BY year;
+
+-- výpočet kupní síly za jednotku ve spojené tabulce
 
 
