@@ -20,13 +20,13 @@ prices AS (
     GROUP BY name, year
     ORDER BY name, year )
 
-SELECT s.payroll_year,
+SELECT s.payroll_year AS salary_yr,
        s.name AS industry,
        p.name AS product,
        p.price,
-       s.percentage_grow_salary,
-       p.perc_food_grow - s.percentage_grow_salary AS perc_price_increase
+       s.percentage_grow_salary AS ΔP_salary,
+       p.perc_food_grow - s.percentage_grow_salary AS ΔP_food
 FROM salary s
 JOIN prices p ON s.payroll_year = p.year
 WHERE p.perc_food_grow - s.percentage_grow_salary > 10
-ORDER BY s.payroll_year, s.name, p.name;
+ORDER BY s.payroll_year, product, industry;
