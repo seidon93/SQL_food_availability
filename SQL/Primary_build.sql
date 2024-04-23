@@ -41,3 +41,18 @@ SELECT
     ORDER BY industry, reference_year;
 
 -- --------------------------------------------------------------------------------------------------------------
+-- ceny chleba a mléka během r. 2006, 2018 za jednotku
+SELECT
+    category.name,
+    round(value, 1) AS unit_price,
+    year(date_from) AS year,
+    concat(price_value,' ', price_unit) AS "measure unit"
+
+    FROM czechia_price_category AS category
+    JOIN czechia_price AS cp ON category.code = cp.category_code
+    WHERE category.name IN ('Mléko polotučné pasterované', 'Chléb konzumní kmínový')
+    AND (year(date_from)) IN (2006, 2018)
+    GROUP BY year, name
+    ORDER BY year;
+
+
