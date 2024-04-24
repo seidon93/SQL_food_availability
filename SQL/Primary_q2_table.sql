@@ -28,7 +28,9 @@ WITH salaries AS (
         SELECT
             sal.reference_year,
             sal.industry,
+            concat(salary,' Kč') AS salary,
             pri.item,
+            unit_price,
             round(sal.salary / pri.unit_price) AS 'purchasing power'
             FROM salaries AS sal
             JOIN prices pri ON pri.year = sal.reference_year;
