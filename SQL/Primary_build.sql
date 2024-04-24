@@ -93,3 +93,14 @@ FROM czechia_price_category AS category
 JOIN czechia_price AS cp ON category.code = cp.category_code
 GROUP BY name, year
 ORDER BY name, year;
+
+-- ----------------------------------------------------------------------------------------------------
+-- Q5
+
+SELECT
+    year AS eco_year,
+    gini AS HDP
+FROM economies
+WHERE country = 'Czech republic' AND gini IS NOT NULL AND year >= 2006
+ORDER BY year;
+
