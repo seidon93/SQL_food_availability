@@ -16,7 +16,8 @@ WITH salaries AS (
             category.name AS item,
             round(value, 1) AS unit_price,
             year(date_from) AS year,
-            concat(price_value,' ', price_unit) AS "measure unit"
+            concat(price_value,' ', price_unit) AS "measure unit",
+            price_unit
 
             FROM czechia_price_category AS category
             JOIN czechia_price AS cp ON category.code = cp.category_code
@@ -30,8 +31,9 @@ WITH salaries AS (
             sal.industry,
             concat(salary,' Kč') AS salary,
             pri.item,
-            unit_price,
-            round(sal.salary / pri.unit_price) AS 'purchasing power'
+            concat(unit_price, ' Kč') AS unit_price,
+            round(sal.salary / pri.unit_price) AS 'purchasing_power',
+            price_unit
             FROM salaries AS sal
             JOIN prices pri ON pri.year = sal.reference_year;
 
