@@ -14,7 +14,7 @@ prices AS (
         round(avg(value)) AS price,
         year(date_from) AS year,
         round((round(avg(value)) - lag(round(avg(value))) OVER (PARTITION BY name ORDER BY year(date_from))) /
-        lag(round(avg(value))) OVER (PARTITION BY name ORDER BY year(date_from)) * 100, 1) AS perc_food_grow
+        lag(round(avg(value))) OVER (PARTITION BY name ORDER BY year(date_from)) * 100) AS perc_food_grow
     FROM czechia_price_category AS category
     JOIN czechia_price AS cp ON category.code = cp.category_code
     GROUP BY name, year
@@ -24,8 +24,11 @@ SELECT s.payroll_year AS salary_yr,
        s.name AS industry,
        p.name AS product,
        p.price,
+       'Kč' AS measure,
        s.percentage_grow_salary AS ΔP_salary,
-       p.perc_food_grow - s.percentage_grow_salary AS ΔP_food
+       '%' AS percent,
+       p.perc_food_grow - s.percentage_grow_salary AS ΔP_food,
+       '%' AS percent
 FROM salary s
 JOIN prices p ON s.payroll_year = p.year
 WHERE p.perc_food_grow - s.percentage_grow_salary > 10

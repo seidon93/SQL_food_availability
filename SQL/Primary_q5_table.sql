@@ -33,8 +33,10 @@ SELECT s.payroll_year,
        p.name AS product,
        p.price AS product_price,
        'Kč' AS measure,
-       concat(s.percentage_grow_salary, ' %') AS ΔP_grow_salary,
-       concat(p.perc_food_grow - s.percentage_grow_salary, ' %') AS ΔP_grow_food,
+       s.percentage_grow_salary AS ΔP_grow_salary,
+       '%' AS percent,
+       p.perc_food_grow - s.percentage_grow_salary AS ΔP_grow_food,
+        '%' AS percent,
        HDP
 FROM salary s
 JOIN prices p ON s.payroll_year = p.year
