@@ -29,9 +29,11 @@ WITH salaries AS (
         SELECT
             sal.reference_year,
             sal.industry,
-            concat(salary,' Kč') AS salary,
+            salary,
+            'Kč' AS measure,
             pri.item,
-            concat(unit_price, ' Kč') AS unit_price,
+            unit_price AS unit_price,
+            'Kč' AS 'unit_price_measure',
             round(sal.salary / pri.unit_price) AS 'purchasing_power',
             price_unit
             FROM salaries AS sal
