@@ -29,11 +29,12 @@ WHERE country = 'Czech republic' AND gini IS NOT NULL AND year >= 2006
 ORDER BY year
 )
 
-SELECT s.payroll_year AS pay_year,
+SELECT s.payroll_year,
        p.name AS product,
        p.price AS product_price,
-       s.percentage_grow_salary AS ΔP_salary,
-       p.perc_food_grow - s.percentage_grow_salary AS ΔP_food,
+       'Kč' AS measure,
+       concat(s.percentage_grow_salary, ' %') AS ΔP_grow_salary,
+       concat(p.perc_food_grow - s.percentage_grow_salary, ' %') AS ΔP_grow_food,
        HDP
 FROM salary s
 JOIN prices p ON s.payroll_year = p.year
@@ -41,5 +42,3 @@ JOIN HDP ON eco_year = p.year
 WHERE p.perc_food_grow - s.percentage_grow_salary > 0
 GROUP BY year, product
 ORDER BY product, year;
-
--- upravit na cenu jídla  před / po (chybí sloupec) a rozdíl nárůstu hdp
