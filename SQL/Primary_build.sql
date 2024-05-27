@@ -102,7 +102,9 @@ FROM economies;
 SELECT
     country,
     year AS eco_year,
-    GDP AS HDP
+    GDP AS HDP,
+    lag(GDP) OVER (ORDER BY (year)) AS predchozi_hdp,
+    round(((GDP - lag(GDP) OVER (ORDER BY (year))) / lag(GDP) OVER (ORDER BY (year))) * 100, 2) AS P_diff_HDP
 FROM economies
 WHERE economies.year BETWEEN 2006 AND 2018
   AND  country = 'Czech republic'

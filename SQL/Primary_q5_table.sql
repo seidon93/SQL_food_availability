@@ -24,7 +24,9 @@ hdp AS (
     SELECT
         country,
         year AS eco_year,
-        GDP AS HDP
+        GDP AS HDP,
+        lag(GDP) OVER (ORDER BY (year)) AS predchozi_hdp,
+        round(((GDP - lag(GDP) OVER (ORDER BY (year))) / lag(GDP) OVER (ORDER BY (year))) * 100, 2) AS P_diff_HDP
     FROM economies
     WHERE economies.year BETWEEN 2006 AND 2018
       AND  country = 'Czech republic'
@@ -37,9 +39,9 @@ SELECT s.payroll_year,
        'Kč' AS measure,
        p.perc_food_grow - s.percentage_grow_salary AS ΔP_grow_food,
         '%' AS percent,
+       P_diff_HDP,
        s.percentage_grow_salary AS ΔP_grow_salary,
-        '%' AS percent,
-       hdp.HDP
+        '%' AS percent
 FROM salary s
 JOIN prices p ON s.payroll_year = p.year
 JOIN hdp ON eco_year = payroll_year
