@@ -96,11 +96,17 @@ ORDER BY name, year;
 
 -- ----------------------------------------------------------------------------------------------------
 -- Q5
+SELECT *
+FROM economies;
 
 SELECT
+    country,
     year AS eco_year,
-    gini AS HDP
+    GDP AS HDP
 FROM economies
-WHERE country = 'Czech republic' AND gini IS NOT NULL AND year >= 2006
-ORDER BY year;
+WHERE economies.year BETWEEN 2006 AND 2018
+  AND  country = 'Czech republic'
+ORDER BY eco_year;
+
+
 

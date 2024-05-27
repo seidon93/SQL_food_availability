@@ -14,3 +14,4 @@ SELECT
         WHERE payroll_year >= 2006 AND payroll_year <= 2018 AND value IS NOT NULL
         GROUP BY payroll_year, industry
         ORDER BY industry, reference_year;
+

@@ -20,13 +20,15 @@ prices AS (
     GROUP BY name, year
     ORDER BY name, year ),
 
-HDP AS (
+hdp AS (
     SELECT
-    year AS eco_year,
-    gini AS HDP
-FROM economies
-WHERE country = 'Czech republic' AND gini IS NOT NULL AND year >= 2006
-ORDER BY year
+        country,
+        year AS eco_year,
+        GDP AS HDP
+    FROM economies
+    WHERE economies.year BETWEEN 2006 AND 2018
+      AND  country = 'Czech republic'
+    ORDER BY eco_year
 )
 
 SELECT s.payroll_year,
@@ -37,10 +39,11 @@ SELECT s.payroll_year,
        '%' AS percent,
        p.perc_food_grow - s.percentage_grow_salary AS ΔP_grow_food,
         '%' AS percent,
-       HDP
+       hdp.HDP
 FROM salary s
 JOIN prices p ON s.payroll_year = p.year
-JOIN HDP ON eco_year = p.year
-WHERE p.perc_food_grow - s.percentage_grow_salary > 0
+JOIN hdp ON eco_year = payroll_year
 GROUP BY year, product
 ORDER BY product, year;
+
+

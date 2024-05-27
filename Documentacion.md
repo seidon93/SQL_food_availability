@@ -19,20 +19,36 @@ období v dostupných datech cen a mezd?
 
 5. Má výška HDP vliv na změny ve mzdách a cenách potravin? Neboli, pokud HDP vzroste výrazněji v jednom roce, projeví se to na cenách potravin či mzdách ve stejném nebo násdujícím roce výraznějším růstem?
 
+
 6. Dodatečná data o dalších evropských státech
 
-<span style="color:#911410"> <b>Note: pro data mezd a cen potravin za Českou republiku sjednocených na totožné porovnatelné období. </span>
+<span style="color:#c22419"> <b>Note: pro data mezd a cen potravin za Českou republiku sjednocených na totožné porovnatelné období. </span>
 
-### <span style="color:#000000">Použitý software </span>
+### <span style="color:#000000">Použitý software: </span>
 - **DataGrip v. 2024.1.1**
-- **RDBMS MariaDb 10.11.5**
-- **Tableau 2024.1**
+- **RDBMS MariaDb v. 10.11.5**
+- **MS Ecxcel v. 2403**
+- **Tableau v. 2024.1**
+
+
+
+### <span style="color:#000000">Struktura adresáře a obsahu: </span>
+
+[SQL adresář ]()
+ -- obsahující scripty k jednotlivým výzkumným otázkám a skript Primary_build s komentáři postupů a průběhem operací.
+
+[Raw data adresář]() -- který obsahuje  nezpracované xlsx soubory k jednotlivým datovým sadám.
+
+
+[Output tables adresář ]()  -- který obsahuje  zpracované xlsx soubory k jednotlivým výzkumným otázkám.
+
+<span style="color:#1048c9">Dokumentace</span>
 
 ### <span style="color:#000000">Původ dat: </span>
 
 Data jsou převzatá z Engeto academy a ČSÚ
 
-#### <span style="color:#108f1f">Použité datové sady: </span>
+#### <span style="color:#1076c9">Použité datové sady: </span>
 - czechia_payroll
 - czechia_payroll_industry_branch
 - czechia_price
@@ -42,11 +58,18 @@ Data jsou převzatá z Engeto academy a ČSÚ
 
 
 ### <span style="color:#000000"> Obecná logika </span>
-- načtení datových sad
+- načtení datových sad jazykem SQL
 - spojení potřebných entit, k zodpovězení jednotlivých otázek
 - vyčištění, seskupení dat v průběhu operací
 - výpočtové operace
-- přidání nebo, odebrání znaků či atributů pro přehlednost jednotek
+- přidání funkcí, nebo atributů pro vizuální přehlednost jednotek
 
+
+### <span style="color:#000000"> Transformace </span>
+Další transformace na tabulku proběhla v MS Excel a přidání sloupce pro převod datumu ve formátu čísla na datový typ datum.
+
+### <span style="color:#000000"> Výstup ve formě vizualizace </span>
+
+- Použitá metoda připojení je live prostřednictvím SQL views
 
 
