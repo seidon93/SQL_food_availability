@@ -35,9 +35,9 @@ SELECT s.payroll_year,
        p.name AS product,
        p.price AS product_price,
        'Kč' AS measure,
-       s.percentage_grow_salary AS ΔP_grow_salary,
-       '%' AS percent,
        p.perc_food_grow - s.percentage_grow_salary AS ΔP_grow_food,
+        '%' AS percent,
+       s.percentage_grow_salary AS ΔP_grow_salary,
         '%' AS percent,
        hdp.HDP
 FROM salary s
