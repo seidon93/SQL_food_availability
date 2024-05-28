@@ -6,7 +6,7 @@ SELECT
 
         coalesce(
         round(((round(avg(value))- lag( round(avg(value))) OVER (PARTITION BY name ORDER BY payroll_year)) /
-        lag( round(avg(value))) OVER (PARTITION BY name ORDER BY payroll_year)) * 100, 1), 0) AS ΔP_yr_grow,
+        lag( round(avg(value))) OVER (PARTITION BY name ORDER BY payroll_year)) * 100, 1), 0) AS ΔP_yr_grow_salary,
 
         '%' AS ΔP_yr_measure_grow
         FROM czechia_payroll AS czpay

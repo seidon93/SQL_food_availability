@@ -34,18 +34,18 @@ hdp AS (
 )
 
 SELECT s.payroll_year,
-       p.name AS product,
+       p.name AS item,
        p.price AS product_price,
-       'Kč' AS measure,
+       'Kč' AS unit_price_measure,
        p.perc_food_grow - s.percentage_grow_salary AS ΔP_grow_food,
-        '%' AS percent,
+        '%' AS measure_food_dif,
        P_diff_HDP,
        s.percentage_grow_salary AS ΔP_grow_salary,
-        '%' AS percent
+        '%' AS measure_food_dif
 FROM salary s
 JOIN prices p ON s.payroll_year = p.year
 JOIN hdp ON eco_year = payroll_year
-GROUP BY year, product
-ORDER BY product, year;
+GROUP BY year, item
+ORDER BY item, year;
 
 
