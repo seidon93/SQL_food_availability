@@ -13,7 +13,7 @@ sectors and food prices and GDP, which could lead to better economic decisions.
 
 
 &#128220; [Documentacion](https://github.com/seidon93/SQL_food_availability/tree/Developer/Documentacion)  
-Directory *Documentacion* contains English and Czech documentation about the project.
+The *Documentacion* directory contains the Czech documentation for the project.
 
 
  &#128194; [SQL](https://github.com/seidon93/SQL_food_availability/tree/Developer/SQL)  
