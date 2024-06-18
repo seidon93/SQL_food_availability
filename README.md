@@ -1,6 +1,6 @@
 # Analysis of the evolution of salaries and food prices across sectors and the impact of GDP &#128200;
 
----
+
 
 
 This project focuses on examining the evolution of salaries and food prices  
